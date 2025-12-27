@@ -8,9 +8,11 @@ function Nav(){
             </div>
         </div>
         <div className="navRight">
-            <div className="notification"></div>
+            <div className="notification">
+                <i class="ri-notification-3-fill"></i>
+            </div>
             <div className="profile">
-                <img src="/public/proflie.jpg" alt="" />
+                <img src="/proflie.jpg" alt="" />
             </div>
         </div>
     </nav>
