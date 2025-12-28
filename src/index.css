@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: aonic;
 }
 
 html,
@@ -12,6 +12,10 @@ body,
   width: 100%;
 }
 
+@font-face {
+  font-family: aonic;
+  src: url(./assets/fonts/fonnts.com-Aeonik-Regular.ttf);
+}
 .main {
   width: 100%;
   height: 100vh;
@@ -22,6 +26,9 @@ body,
 }
 .main .mainView {
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .main .mainView nav {
   color: rgb(242, 242, 242);
@@ -46,10 +53,10 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.5rem;
 }
 .main .mainView nav .navLeft .search label i {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .main .mainView nav .navLeft .search input {
   color: white;
@@ -94,10 +101,144 @@ body,
      object-position: 50% 50%;
   transform: scale(1.01);
 }
+.main .mainView .content {
+  width: 100%;
+  height: 100%;
+  background-color: aliceblue;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.main .mainView .content .moviePreview {
+  height: 50%;
+  color: rgb(238, 238, 238);
+  background-image: url(./Gemini_Generated_Image_loaqrbloaqrbloaq.png);
+  background-size: cover;
+  background-position: center;
+  border-radius: 7px;
+  padding: 1.1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.8fr 0fr 5fr 1fr;
+  grid-template-areas: "trending" "genre" "movie" "buttons";
+}
+.main .mainView .content .moviePreview .trending {
+  grid-area: trending;
+  height: 25px;
+  width: 90px;
+  background-color: rgba(223, 223, 223, 0.147);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(172, 172, 172, 0.478);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0rem;
+  justify-content: start;
+}
+.main .mainView .content .moviePreview .trending p {
+  font-size: 0.8rem;
+}
+.main .mainView .content .moviePreview .trending .icon {
+  height: 100%;
+  aspect-ratio: 1/1;
+  margin-left: 0.2rem;
+}
+.main .mainView .content .moviePreview .trending .icon img {
+  width: 96%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.main .mainView .content .moviePreview .genre {
+  grid-area: genre;
+  display: none;
+}
+.main .mainView .content .moviePreview .movie {
+  grid-area: movie;
+  align-self: end;
+  padding-bottom: 1rem;
+}
+.main .mainView .content .moviePreview .movie h3 {
+  font-size: clamp(20.8px, 6vw, 56px);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.main .mainView .content .moviePreview .movie .desc {
+  font-size: clamp(14px, 4.2vw, 20px);
+}
+.main .mainView .content .moviePreview .btns {
+  grid-area: buttons;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+.main .mainView .content .moviePreview .btns .watchNow {
+  width: clamp(97px, 36%, 143px);
+  height: 40px;
+  color: black;
+  background-color: rgb(216, 149, 247);
+  border-radius: 7px;
+  padding: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}
+.main .mainView .content .moviePreview .btns .watchNow p {
+  font-size: 0.8rem;
+}
+.main .mainView .content .moviePreview .btns .watchNow i {
+  font-size: 1rem;
+}
+.main .mainView .content .moviePreview .btns .download,
+.main .mainView .content .moviePreview .btns .more {
+  height: 40px;
+  aspect-ratio: 1/1;
+  background-color: rgba(223, 223, 223, 0.033);
+  -webkit-backdrop-filter: blur(7px);
+          backdrop-filter: blur(7px);
+  border: 1px solid rgba(172, 172, 172, 0.637);
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0rem;
+}
+.main .mainView .content .moviePreview .btns .download i,
+.main .mainView .content .moviePreview .btns .more i {
+  font-size: 1.2rem;
+}
+.main .mainView .content .conWatch {
+  flex-grow: 1;
+  background-color: aqua;
+}
+.main .mainView .content .conWatch .watchHead {
+  font-size: clamp(1.1rem, 5.5vw, 22px);
+  font-weight: 500;
+}
+.main .mainView .content .conWatch .remains {
+  display: flex;
+  gap: 0.3rem;
+  overflow: scroll;
+  padding: 0.3rem;
+}
+.main .mainView .content .conWatch .remains .show {
+  flex-shrink: 0;
+  height: clamp(150px, 40vw, 150px);
+  width: clamp(70px, 30vw, 110px);
+  background-color: antiquewhite;
+  border-radius: 7px;
+}
 
-@media (min-width: 764px) {
+@media (min-width: 768px) {
   .main .mainView nav .navLeft {
     width: 45%;
+  }
+  .main .mainView nav .navLeft label i {
+    font-size: 1rem;
   }
   .main .mainView nav .navRight {
     display: flex;
@@ -111,6 +252,9 @@ body,
   .main .mainView nav .navRight .notification i {
     font-size: 1.6rem;
     font-weight: 500;
+  }
+  .main .mainView .content .moviePreview {
+    height: 60%;
   }
 }
 @media (min-width: 1024px) {
