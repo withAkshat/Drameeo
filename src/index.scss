@@ -8,9 +8,10 @@
 html,
 body,
 #root {
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
 }
+
 
 @mixin flex-center($gap: 0rem) {
     display: flex;
@@ -19,6 +20,23 @@ body,
     gap: $gap;
 }
 
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes animateBorder {
+ from{
+    --angle: 0deg;
+ }
+ 
+ to{
+    --angle: 360deg;
+ }
+}
+
+
 @font-face {
     font-family: aonic;
     src: url(./assets/fonts/fonnts.com-Aeonik-Regular.ttf);
@@ -26,8 +44,9 @@ body,
 
 .main {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background: linear-gradient(140deg, rgb(35, 26, 50), rgb(35, 26, 50), rgb(35, 26, 50), rgb(123, 117, 133) 20% 1%, rgb(35, 26, 50), rgb(35, 26, 50), rgb(35, 26, 50));
+    // overflow-y: scroll;
 
     .sideBar {
         display: none;
@@ -38,6 +57,7 @@ body,
         height: 100%;
         display: flex;
         flex-direction: column;
+        overflow-y: scroll;
 
         nav {
             color: rgb(242, 242, 242);
@@ -114,8 +134,8 @@ body,
 
         .content {
             width: 100%;
-            height: 100%;
-            background-color: aliceblue;
+            height: 100% ;
+            // background-color: aliceblue;
             padding: 0.5rem;
 
             display: flex;
@@ -125,7 +145,7 @@ body,
             .moviePreview {
                 height: 50%;
                 color: rgb(238, 238, 238);
-                background-image: url(./Gemini_Generated_Image_loaqrbloaqrbloaq.png);
+                background-image: url(./Adventure\ Baltigo.png);
                 background-size: cover;
                 background-position: center;
                 border-radius: 7px;
@@ -160,7 +180,6 @@ body,
                         img {
                             width: 96%;
                             object-fit: cover;
-                            // display: none;
                         }
                     }
                 }
@@ -194,22 +213,38 @@ body,
                     justify-content: flex-start;
 
                     .watchNow {
-                        width: clamp(97px, 36%, 143px);
+                        width: clamp(97px, 37%, 143px);
                         height: 40px;
                         color: black;
-                        background-color: rgb(216, 149, 247);
                         border-radius: 7px;
-                        padding: 0.3rem;
+                        padding: 0.12rem;
+                        background: conic-gradient(from var(--angle),rgb(216, 149, 247),rgba(0, 0, 0, 0),rgb(216, 149, 247),rgba(0, 0, 0, 0.101),rgb(216, 149, 247));
+                        animation: animateBorder linear 3s infinite running;
+                        transition: all 0.2s ease-out;
+                        .btn{
+                            height: 100%;
+                            width: 100%;
+                            background-color: rgb(216, 149, 247);
+                            border-radius: 7px;
 
-                        @include flex-center(0.2rem);
+                            @include flex-center(0.2rem);
 
-                        p {
+                               p {
                             font-size: 0.8rem;
                         }
 
                         i {
                             font-size: 1rem;
                         }
+                        }
+                    }
+
+                    .watchNow:hover{
+                        transform: scale(1.01);
+                    //    height: 42px;
+                    padding: 0;
+                       color: white;
+                        
                     }
 
                     .download,
@@ -231,10 +266,13 @@ body,
             }
 
             .conWatch {
-                flex-grow: 1;
-                background-color: aqua;
+                width: 100%;
+                min-height:fit-content;
+                color: white;
+                // background-color: rgb(128, 248, 208);
+                overflow: hidden;
+                padding-right: 0;
 
-                // padding: 1.1rem;
                 .watchHead {
                     font-size: clamp(1.1rem, 5.5vw, 22px);
                     font-weight: 500;
@@ -242,20 +280,30 @@ body,
 
                 .remains {
                     display: flex;
-                    gap: 0.3rem;
+                    gap: 0.5rem;
                     overflow: scroll;
-                    padding: 0.3rem;
+                    padding: 0.4rem;
 
                     .show {
                         flex-shrink: 0;
-                        height: clamp(150px, 40vw, 150px);
-                        width: clamp(70px, 30vw, 110px);
+                        height: 160px;
+                        width: 120px;
                         background-color: antiquewhite;
                         border-radius: 7px;
                     }
                 }
+
+                .remains::-webkit-scrollbar {
+                    display: none;
+                }
             }
         }
+
+
+    }
+
+    .mainView::-webkit-scrollbar {
+        display: none;
     }
 }
 
@@ -294,6 +342,18 @@ body,
                 .moviePreview {
                     height: 60%;
                 }
+
+                .conWatch {
+
+                    .remains {
+                        gap: 0.8rem;
+
+                        .show {
+                            width: 190px;
+                            height: 130px
+                        }
+                    }
+                }
             }
         }
     }
@@ -309,17 +369,55 @@ body,
             background-color: transparent;
             padding: 1rem;
             display: flex;
+            position: sticky;
+            top: 0;
 
             .view {
                 height: 100%;
                 width: 100%;
-                background-color: azure;
+                background-color: rgba(172, 171, 171, 0.418);
+                backdrop-filter: blur(7px);
+                border: 1px solid rgba(255, 255, 255, 0.437);
                 border-radius: 7px;
+
+                .logoSec{
+                    
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding:0.6rem;
+                    p{
+                        font-size: 1.7rem;
+                        
+                    }
+
+                    i{
+                        font-size: 1.7rem;
+                    }
+                    
+                    i:nth-child(1){
+                        font-size: 2rem;
+                        color: rgb(216, 149, 247);
+                    }
+                }
             }
         }
 
         .mainView {
-            padding: 0.5rem;
+            // padding: 0.5rem;
+            // flex-grow: 1;
+
+            .moviePreview {
+                // min-width: 0;
+            }
+
+            .content {
+                .conWatch {
+                    .remains {}
+                }
+            }
         }
     }
 }
+

@@ -8,17 +8,30 @@
 html,
 body,
 #root {
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
 }
 
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes animateBorder {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
 @font-face {
   font-family: aonic;
   src: url(./assets/fonts/fonnts.com-Aeonik-Regular.ttf);
 }
 .main {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: linear-gradient(140deg, rgb(35, 26, 50), rgb(35, 26, 50), rgb(35, 26, 50), rgb(123, 117, 133) 20% 1%, rgb(35, 26, 50), rgb(35, 26, 50), rgb(35, 26, 50));
 }
 .main .sideBar {
@@ -29,6 +42,7 @@ body,
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 .main .mainView nav {
   color: rgb(242, 242, 242);
@@ -104,7 +118,6 @@ body,
 .main .mainView .content {
   width: 100%;
   height: 100%;
-  background-color: aliceblue;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -113,7 +126,7 @@ body,
 .main .mainView .content .moviePreview {
   height: 50%;
   color: rgb(238, 238, 238);
-  background-image: url(./Gemini_Generated_Image_loaqrbloaqrbloaq.png);
+  background-image: url(./Adventure\ Baltigo.png);
   background-size: cover;
   background-position: center;
   border-radius: 7px;
@@ -176,22 +189,35 @@ body,
   justify-content: flex-start;
 }
 .main .mainView .content .moviePreview .btns .watchNow {
-  width: clamp(97px, 36%, 143px);
+  width: clamp(97px, 37%, 143px);
   height: 40px;
   color: black;
+  border-radius: 7px;
+  padding: 0.12rem;
+  background: conic-gradient(from var(--angle), rgb(216, 149, 247), rgba(0, 0, 0, 0), rgb(216, 149, 247), rgba(0, 0, 0, 0.101), rgb(216, 149, 247));
+  animation: animateBorder linear 3s infinite running;
+  transition: all 0.2s ease-out;
+}
+.main .mainView .content .moviePreview .btns .watchNow .btn {
+  height: 100%;
+  width: 100%;
   background-color: rgb(216, 149, 247);
   border-radius: 7px;
-  padding: 0.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.2rem;
 }
-.main .mainView .content .moviePreview .btns .watchNow p {
+.main .mainView .content .moviePreview .btns .watchNow .btn p {
   font-size: 0.8rem;
 }
-.main .mainView .content .moviePreview .btns .watchNow i {
+.main .mainView .content .moviePreview .btns .watchNow .btn i {
   font-size: 1rem;
+}
+.main .mainView .content .moviePreview .btns .watchNow:hover {
+  transform: scale(1.01);
+  padding: 0;
+  color: white;
 }
 .main .mainView .content .moviePreview .btns .download,
 .main .mainView .content .moviePreview .btns .more {
@@ -212,8 +238,12 @@ body,
   font-size: 1.2rem;
 }
 .main .mainView .content .conWatch {
-  flex-grow: 1;
-  background-color: aqua;
+  width: 100%;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+  color: white;
+  overflow: hidden;
+  padding-right: 0;
 }
 .main .mainView .content .conWatch .watchHead {
   font-size: clamp(1.1rem, 5.5vw, 22px);
@@ -221,16 +251,22 @@ body,
 }
 .main .mainView .content .conWatch .remains {
   display: flex;
-  gap: 0.3rem;
+  gap: 0.5rem;
   overflow: scroll;
-  padding: 0.3rem;
+  padding: 0.4rem;
 }
 .main .mainView .content .conWatch .remains .show {
   flex-shrink: 0;
-  height: clamp(150px, 40vw, 150px);
-  width: clamp(70px, 30vw, 110px);
+  height: 160px;
+  width: 120px;
   background-color: antiquewhite;
   border-radius: 7px;
+}
+.main .mainView .content .conWatch .remains::-webkit-scrollbar {
+  display: none;
+}
+.main .mainView::-webkit-scrollbar {
+  display: none;
 }
 
 @media (min-width: 768px) {
@@ -256,6 +292,13 @@ body,
   .main .mainView .content .moviePreview {
     height: 60%;
   }
+  .main .mainView .content .conWatch .remains {
+    gap: 0.8rem;
+  }
+  .main .mainView .content .conWatch .remains .show {
+    width: 190px;
+    height: 130px;
+  }
 }
 @media (min-width: 1024px) {
   .main {
@@ -267,14 +310,33 @@ body,
     background-color: transparent;
     padding: 1rem;
     display: flex;
+    position: sticky;
+    top: 0;
   }
   .main .sideBar .view {
     height: 100%;
     width: 100%;
-    background-color: azure;
+    background-color: rgba(172, 171, 171, 0.418);
+    -webkit-backdrop-filter: blur(7px);
+            backdrop-filter: blur(7px);
+    border: 1px solid rgba(255, 255, 255, 0.437);
     border-radius: 7px;
   }
-  .main .mainView {
-    padding: 0.5rem;
+  .main .sideBar .view .logoSec {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem;
+  }
+  .main .sideBar .view .logoSec p {
+    font-size: 1.7rem;
+  }
+  .main .sideBar .view .logoSec i {
+    font-size: 1.7rem;
+  }
+  .main .sideBar .view .logoSec i:nth-child(1) {
+    font-size: 2rem;
+    color: rgb(216, 149, 247);
   }
 }/*# sourceMappingURL=index.css.map */

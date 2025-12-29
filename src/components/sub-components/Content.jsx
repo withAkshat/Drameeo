@@ -1,3 +1,5 @@
+import Shows from "./Shows";
+
 function Content(){
     return <div className="content">
         <div className="moviePreview">
@@ -20,8 +22,11 @@ function Content(){
 
             <div className="btns">
                 <div className="watchNow">
-                    <i class="ri-play-large-fill"></i>
-                    <p>Watch now</p>
+                    <div className="btn">
+                        <i class="ri-play-large-fill"></i>
+                        <p>Watch now</p>
+
+                    </div>
                 </div>
                 <div className="download">
                     <i class="ri-download-2-line"></i>
@@ -32,17 +37,9 @@ function Content(){
             </div>
 
         </div>
-        <div className="conWatch">
-            <p className="watchHead">Continue Watching</p>
-            <div className="remains">
-                <div className="show"></div>
-                <div className="show"></div>
-                <div className="show"></div>
-                <div className="show"></div>
-                <div className="show"></div>
-            </div>
-        </div>
-        <div className="recommdations"></div>
+       <Shows head="Continue Watching" />
+       <Shows head="You Might Like" />
+        
     </div>
 }
 
