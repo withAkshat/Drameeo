@@ -11,7 +11,7 @@ function Nav(){
         
         <div className="navRight">
             <div className="notification">
-                <i class="ri-notification-3-fill"></i>
+                <i class="ri-notification-3-line"></i>
             </div>
             <div className="profile">
                 <img src="/proflie.jpg" alt="" />
