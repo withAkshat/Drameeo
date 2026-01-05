@@ -111,8 +111,8 @@ body,
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: 50% 50%;
-     object-position: 50% 50%;
+  -o-object-position: center;
+     object-position: center;
   transform: scale(1.01);
 }
 .main .mainView .content {
@@ -266,8 +266,9 @@ body,
 }
 .main .mainView .content .conWatch .remains .show img {
   width: 100%;
-  -o-object-fit: fill;
-     object-fit: fill;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   -o-object-position: center;
      object-position: center;
 }
